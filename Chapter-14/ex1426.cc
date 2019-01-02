@@ -16,30 +16,34 @@ class ScrPtr {
 };
 
 class ScreenPtr {
-    friend ScreenPtr operator+(const ScreenPtr&, const ScreenPtr&);
+    friend ptrdiff_t operator-(const ScreenPtr&, const ScreenPtr&);
 public:
     ScreenPtr(Screen *p): ptr(new ScrPtr(p)) { }
     ScreenPtr(const ScreenPtr &orig):
         ptr(orig.ptr) { ++ptr->use; }
     ScreenPtr& operator=(const ScreenPtr&);
     ~ScreenPtr() { if (--ptr->use == 0) delete ptr; }
-    ScreenPtr& operator+(int);
+    ScreenPtr operator+(int);
 private:
     ScrPtr *ptr; // points to use-counted ScrPtr class
 };
 
-ScreenPtr&
+ScreenPtr
 ScreenPtr::operator+(int rhs)
 {
-    ScreenPtr ret(*this);
-    ret += rhs;
+    ScreenPtr ret = *this;
+    ret.ptr += rhs;
     return ret;
 }
 
 ptrdiff_t
 operator-(const ScreenPtr &lhs, const ScreenPtr &rhs)
 {
-    ScreenPtr ret(lhs.ptr.sp);
-    ret += rhs;
-    return ret;
+    return lhs.ptr - rhs.ptr;
+}
+
+int main(int argc, char const *argv[])
+{
+    /* code */
+    return 0;
 }
