@@ -22,7 +22,7 @@ int main(int argc, char const *argv[])
     words.push_back("chu");
     words.push_back("shu");
     vector<string>::size_type wc =
-        count_if(words.begin(), words.end(), GT_cls(5));
+        count_if(words.begin(), words.end(), GT_cls(3));
     cout << wc << endl;
     return 0;
 }
