@@ -40,12 +40,12 @@ int main()
 {
     Item_base item_base("The Chronicles of Narnia", 19.98);
     Bulk_item bulk_item("Harry Porter", 17.99, 2, 0.2);
-    std::vector<Item_base> item_vec;
-    item_vec.push_back(item_base);
-    item_vec.push_back(bulk_item);
-    std::vector<Item_base>::iterator it = item_vec.begin();
+    std::vector<Item_base *> item_vec;
+    item_vec.push_back(&item_base);
+    item_vec.push_back(&bulk_item);
+    std::vector<Item_base *>::iterator it = item_vec.begin();
     for (; it != item_vec.end(); ++it) {
-        std::cout << it->net_price(5) << std::endl;
+        std::cout << (*it)->net_price(5) << std::endl;
     }
     return 0;
 }
