@@ -33,8 +33,7 @@ private:
     Query(Query_base *query): q(query), use(new std::size_t(1)) { }
     Query_base *q;
     std::size_t *use;
-    void decr_use()
-        { if (--*use == 0) { delete q; delete use; } }
+    void decr_use();
 };
 
 inline std::ostream&
@@ -45,7 +44,8 @@ operator<<(std::ostream &os, const Query &q)
 
 class WordQuery: public Query_base {
     friend class Query; // Query uses the WordQuery constructor
-    WordQuery(const std::string &s): query_word(s) { }
+    WordQuery(const std::string &s): query_word(s)
+        { std::cout << "[WordQuery] Created a WordQuery(\"" << s << "\")" << std::endl; }
     // concrete class: WordQuery defines all inherited pure virtual functions
     std::set<line_no> eval(const TextQuery &t) const
         { return t.run_query(query_word); }
