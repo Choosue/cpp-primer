@@ -67,7 +67,8 @@ class NotQuery: public Query_base {
 class BinaryQuery: public Query_base {
 protected:
     BinaryQuery(Query left, Query right, std::string op):
-        lhs(left), rhs(right), oper(op) { }
+        lhs(left), rhs(right), oper(op)
+        { std::cout << "[BinaryQuery] Created a BinaryQuery" << std::endl; }
     // abstract class: BinaryQuery doesn't define eval
     std::ostream& display(std::ostream &os) const
         { return os << "(" << lhs << " " << oper << " " << rhs << ")"; }
@@ -77,15 +78,31 @@ protected:
 
 class AndQuery: public BinaryQuery {
     friend Query operator&(const Query&, const Query&);
-    AndQuery (Query left, Query right): BinaryQuery(left, right, "&") { }
+    AndQuery(Query left, Query right): BinaryQuery(left, right, "&")
+        { std::cout << "[AndQuery] Created a AndQuery" << std::endl; }
     // concrete class: And Query inherits display and defines remaining pure virtual
     std::set<line_no> eval(const TextQuery&) const;
 };
 
 class OrQuery: public BinaryQuery {
     friend Query operator|(const Query&, const Query&);
-    OrQuery(Query left, Query right):
-        BinaryQuery(left, right, "|") { }
+    OrQuery(Query left, Query right): BinaryQuery(left, right, "|")
+        { std::cout << "[OrQuery] Created a OrQuery" << std::endl; }
     // concrete class: OrQuery inherits display and defines remaining pure virtual
     std::set<line_no> eval(const TextQuery&) const;
 };
+
+inline Query operator&(const Query &lhs, const Query &rhs)
+{
+    return new AndQuery(lhs, rhs);
+}
+
+inline Query operator|(const Query &lhs, const Query &rhs)
+{
+    return new OrQuery(lhs, rhs);
+}
+
+inline Query operator~(const Query &oper)
+{
+    return new NotQuery(oper);
+}

@@ -15,6 +15,7 @@ public:
     void read_file(std::ifstream &is) { store_file(is); build_map(); }
     std::set<line_no> run_query(const std::string&) const;
     std::string text_line(line_no) const;
+    line_no size() const { return lines_of_text.size(); }
 private:
     // utility functions used by read_file
     void store_file(std::ifstream&); // store input file
