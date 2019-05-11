@@ -30,7 +30,8 @@ public:
     std::ostream &display(std::ostream &os) const
         { return q->display(os); }
 private:
-    Query(Query_base *query): q(query), use(new std::size_t(1)) { }
+    Query(Query_base *query): q(query), use(new std::size_t(1))
+        { std::cout << "[Query] Created a Query with use count " + std::to_string(*use) << std::endl; }
     Query_base *q;
     std::size_t *use;
     void decr_use();
