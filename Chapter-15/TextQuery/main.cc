@@ -1,6 +1,6 @@
 #include "query.h"
 
-int main(int argc, char **argv)
+int main()
 {
     std::ifstream test_file("test.txt");
     TextQuery tq;
