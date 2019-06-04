@@ -8,11 +8,11 @@ template <typename T> T abs(const T& a)
 
 int main()
 {
-    string a = "123";
+    double a = -0.111;
     char b = '1';
     int c = -1;
     cout << abs(a) << endl;
-    cout << abs(b) << endl;
     cout << abs(c) << endl;
+    cout << abs(b) << endl;
     return 0;
 }
