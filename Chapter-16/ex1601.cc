@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-template <typename T> T abs(const T& a)
+template <typename T> inline T abs(const T& a)
 {
     return a > 0 ? a : 0 - a;
 }
