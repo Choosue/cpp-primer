@@ -24,8 +24,8 @@ public:
     Type& front() { return head->item; }
     const Type &front() const { return head->item; }
     void push(const Type &);
-    void pop ();
-    bool empty () const { return head == 0; }
+    void pop();
+    bool empty() const { return head == 0; }
     void display_elems();
 private:
     QueueItem<Type> *head;
@@ -45,7 +45,7 @@ template <class Type> void Queue<Type>::destroy()
 template <class Type> void Queue<Type>::pop()
 {
     // pop is unchecked: Popping off an empty Queue is undefined
-    QueueItem<Type>* p = head; // keep pointer to head so we can delete it
+    QueueItem<Type> *p = head; // keep pointer to head so we can delete it
     head = head->next;         // head now points to next element
     delete p;                  // delete old head element
 }
