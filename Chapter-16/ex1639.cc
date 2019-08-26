@@ -6,7 +6,7 @@ template <int hi, int wid> std::ostream& operator<<(std::ostream&, const Screen<
 
 template <int hi, int wid>
 class Screen {
-    friend std::ostream& operator<<(std::ostream&, const Screen<hi, wid>&);
+    friend std::ostream& operator<< <hi, wid>(std::ostream&, const Screen<hi, wid>&);
 public:
     typedef std::string::size_type index;
     Screen(): contents(hi * wid, '0'), height(hi), width(wid) { }
